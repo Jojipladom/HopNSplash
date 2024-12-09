@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
+    
+    
    
    
 
@@ -25,6 +27,9 @@ public class PlayerController : MonoBehaviour
         {
             firePoint = transform; 
         }
+
+        rb = GetComponent<Rigidbody2D>();
+        
     }
 
     void Update()
@@ -36,6 +41,7 @@ public class PlayerController : MonoBehaviour
         float move = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
 
+        
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
              Debug.Log("Jumping");
