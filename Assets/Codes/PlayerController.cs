@@ -13,13 +13,20 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
     public Transform firePoint;
-    public GameObject bulletPrefab;
+    public GameObject bubblePrefab;
     public float bulletSpeed = 10f;
     
     
-   
-   
+    void Shoot()
+    {
+        //Nimmt die bubble prefab, deren rigidbody, und wird nach 2 Sek zerstört
+        GameObject bubble = Instantiate(bubblePrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = bubble.GetComponent<Rigidbody2D>();
+        rb.velocity = firePoint.right * bulletSpeed;
 
+        Destroy(bubble, 2f); 
+    }
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -33,6 +40,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
+    //Altes Input System, das neue ging bei mir nicht.. :(
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 1.1f, groundLayer);
         Debug.Log("isGrounded: " + isGrounded);
@@ -42,14 +50,13 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
 
         
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded) 
         {
              Debug.Log("Jumping");
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
-        
-         if (Input.GetButtonDown("Fire"))
+        if (Input.GetButtonDown("Fire"))
         {
             Shoot();
         }
@@ -57,19 +64,10 @@ public class PlayerController : MonoBehaviour
   
         
     }
-
-    void Shoot()
-    {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = firePoint.right * bulletSpeed;
-
-        Destroy(bullet, 2f); 
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
+            //Yes Jump
         {
             isGrounded = true;
         }
@@ -78,6 +76,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
+            //No Jump
         {
             isGrounded = false;
         }

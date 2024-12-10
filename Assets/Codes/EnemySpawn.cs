@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
+    //Gegner PREFABS(!!)
     public GameObject enemyPrefab;
+    
+    //Wo die spawnen werden
     public Transform spawnPoint;
+    
+    //Respawn Zeit
     public float spawnInterval = 2f;
     
     
@@ -17,6 +20,13 @@ public class EnemySpawn : MonoBehaviour
     
     void SpawnEnemy()
     {
+        if (enemyPrefab == null || spawnPoint == null)
+        {
+            Debug.LogError("Missing prefab oder spawn point.");
+            return;
+        }
+        Vector3 randomOffset = new Vector3(Random.Range(-2f, 2f), 0, 0);
         Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
     }
+
 }

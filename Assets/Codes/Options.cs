@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -9,8 +7,27 @@ public class Options : MonoBehaviour
     public Slider masterVolumeSlider;
     public Slider sfxVolumeSlider;
     public Slider musicVolumeSlider;
-    //Dropdown resolutionDropdown;
     
+    
+    public void SetMasterVolume (float volume)
+    {
+        AudioListener.volume = volume;
+        PlayerPrefs.SetFloat("MasterVolume", volume);
+    }
+    public void SetSFXVolume (float volume)
+    {
+        
+        AudioListener.volume = volume;
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+    }
+     
+    public void SetMusicVolume (float volume)
+    {
+        
+        AudioListener.volume = volume;
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+    }
+
     void Start()
     {
         masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1.0f);
@@ -22,26 +39,6 @@ public class Options : MonoBehaviour
         sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
         musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
     }
-
-    
-    public void SetMasterVolume (float volume)
-    {
-        AudioListener.volume = volume;
-        PlayerPrefs.SetFloat("MasterVolume", volume);
-    }
-  public void SetSFXVolume (float volume)
-     {
-        // musicAudioSource.volume = volume;
-         AudioListener.volume = volume;
-         PlayerPrefs.SetFloat("SFXVolume", volume);
-     }
-     
-   public void SetMusicVolume (float volume)
-      {
-         // musicAudioSource.volume = volume;
-          AudioListener.volume = volume;
-          PlayerPrefs.SetFloat("MusicVolume", volume);
-      }
     
     public void SaveSettings()
         {

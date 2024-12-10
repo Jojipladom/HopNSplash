@@ -54,6 +54,8 @@ public class PauseMenu : MonoBehaviour {
         bool paused = pauseMenuObject.activeSelf;
 
         pauseMenuObject.SetActive(!paused); 
+        //Optionsmenu aus
+        OptionsScreen.SetActive(false); 
     }
     public void ToMenu() 
     {
@@ -64,7 +66,8 @@ public class PauseMenu : MonoBehaviour {
     public void ToggleOptions()
     {
         bool options = OptionsScreen.activeSelf;
-        
+        pauseMenuObject.SetActive(!options);
+        //Optionsmenu an
         OptionsScreen.SetActive(!options);
     }
 }

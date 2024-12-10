@@ -36,19 +36,31 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Assets
+  - Tilemap
+  - Bubble
+  - Player
   m_SortingLayers:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
+  - name: PARALAXBG_OVERLAY
     uniqueID: 994291247
     locked: 0
-  - name: Player
-    uniqueID: 3121581515
+  - name: PARALAXBG5
+    uniqueID: 1936273079
+    locked: 0
+  - name: PARALAXBG4
+    uniqueID: 370306243
+    locked: 0
+  - name: PARALAXBG3
+    uniqueID: 2030340355
+    locked: 0
+  - name: PARALAXBG2
+    uniqueID: 4003065695
+    locked: 0
+  - name: PARALAXBG1
+    uniqueID: 750381167
     locked: 0
   - name: Platforms
     uniqueID: 2058719705
@@ -58,4 +70,13 @@ TagManager:
     locked: 0
   - name: groundCheck
     uniqueID: 2501445009
+    locked: 0
+  - name: Assets
+    uniqueID: 1977154349
+    locked: 0
+  - name: Bubble
+    uniqueID: 591684203
+    locked: 0
+  - name: Player
+    uniqueID: 1441357967
     locked: 0
