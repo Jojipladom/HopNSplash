@@ -1,18 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class GAMEOVER : MonoBehaviour
+public class GameOverScreen : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject gameOverScreenUI;
+    public Button retryButton; 
+    public Button toMenuButton; 
+
+    private PlayerHealth playerHealth; 
+
     void Start()
     {
-        
+        playerHealth = FindObjectOfType<PlayerHealth>();
+        retryButton.onClick.AddListener(RetryGame);
+        toMenuButton.onClick.AddListener(toMenu); 
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+        if (!playerHealth.isAlive || UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        {
+            DisableGameInteractions(); 
+        }
+    }
+
+    public void RetryGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+    }
+
+     public void toMenu() 
+        {
+            
+            SceneManager.LoadScene(0);
+        }
+   
+    private void DisableGameInteractions()
+    {
+       
+        playerHealth.canMove = false;
+
+       
+        // playerHealth.animator.enabled = false;
+    }
+
+    public void ShowGameOverScreen()
+    {
+        gameOverScreenUI.SetActive(true); 
+        Time.timeScale = 0; 
+        Debug.Log("Game Ovaaa!");
     }
 }

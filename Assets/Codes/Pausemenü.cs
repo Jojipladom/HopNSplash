@@ -1,63 +1,96 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Utilities;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour {
-
-    public PlayerInput playerInputActions;
+public class PauseMenu : MonoBehaviour
+{
     public PlayerInput menuInputActions;
     public GameObject pauseMenuObject;
     public GameObject resumeButton;
     public GameObject OptionsScreen;
+    private PlayerController playerController;
+    private HighScore highScore;
 
-    IDisposable onAnyEvent;
+    void Start()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+        highScore = FindObjectOfType<HighScore>();
 
-    private void Awake() {
-        onAnyEvent = InputSystem.onAnyButtonPress.Call(OnAnyButtonPress);
-    }
-
-    private void OnDestroy() {
-        onAnyEvent.Dispose();
-    }
-
-    private void OnAnyButtonPress(InputControl control) {
-        if(control.device.name.Contains("Mouse"))
-            return;
-
-        if(pauseMenuObject.activeSelf) {
-            GameObject selected = EventSystem.current.currentSelectedGameObject;
-            if(selected == null) {
-                EventSystem.current.SetSelectedGameObject(resumeButton);
-            }
+        if (playerController == null)
+        {
+            Debug.LogError("PlayerController not found");
         }
-    }
 
-    void OnEnable() {
-        menuInputActions.currentActionMap.FindAction("Pause").performed += OnPaused;
-    }
+        if (highScore == null)
+        {
+            Debug.LogError("HighScore not found");
+        }
 
-    private void OnDisable() {
-        menuInputActions.currentActionMap.FindAction("Pause").performed -= OnPaused;
-    }
+        
+        if (menuInputActions != null)
+        {
+            menuInputActions.currentActionMap.FindAction("Pause").performed += OnPaused;
+        }
+        else
+        {
+            Debug.LogError("menuInputActions noh");
+        }
+  }
 
-    public void OnPaused(InputAction.CallbackContext context) {
+    public void OnPaused(InputAction.CallbackContext context)
+    {
         TogglePause();
     }
 
-    public void TogglePause() 
+    public void TogglePause()
     {
         bool paused = pauseMenuObject.activeSelf;
 
-        pauseMenuObject.SetActive(!paused); 
-        //Optionsmenu aus
-        OptionsScreen.SetActive(false); 
+        pauseMenuObject.SetActive(!paused);
+
+        if (!paused)
+        {
+            
+            Time.timeScale = 0;
+
+           
+            if (playerController != null)
+            {
+                playerController.CanMove = false;
+            }
+
+            
+            if (highScore != null)
+            {
+                highScore.PauseGame(true);
+            }
+        }
+        else
+        {
+            
+            Time.timeScale = 1;
+
+           
+            if (playerController != null)
+            {
+                playerController.CanMove = true;
+                
+            }
+
+            if (highScore != null)
+            {
+                highScore.PauseGame(false);
+            }
+        }
+
+
+        OptionsScreen.SetActive(false);
     }
-    public void ToMenu() 
+
+    public void ToMenu()
     {
         TogglePause();
         SceneManager.LoadScene(0);
@@ -67,7 +100,8 @@ public class PauseMenu : MonoBehaviour {
     {
         bool options = OptionsScreen.activeSelf;
         pauseMenuObject.SetActive(!options);
-        //Optionsmenu an
+
+        
         OptionsScreen.SetActive(!options);
     }
 }

@@ -15,31 +15,31 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   - Assets
   - Tilemap
+  - Enemy
   - Bubble
   - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -73,6 +73,9 @@ TagManager:
     locked: 0
   - name: Assets
     uniqueID: 1977154349
+    locked: 0
+  - name: Enemy
+    uniqueID: 3103038169
     locked: 0
   - name: Bubble
     uniqueID: 591684203

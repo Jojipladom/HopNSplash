@@ -7,6 +7,7 @@ public class HighScore : MonoBehaviour
 {
     public Text scoreText;
     private int score = 0;
+    private float elapsedTime = 0f;
     
     void Start()
     {
@@ -16,6 +17,8 @@ public class HighScore : MonoBehaviour
     
     void Update()
     {
+        elapsedTime += Time.deltaTime;
+       
         scoreText.text = "Score: " + score;
        
     }
@@ -24,4 +27,18 @@ public class HighScore : MonoBehaviour
         {
             score+= amount;
          }   
+        
+    public void PauseGame(bool pause)
+    {
+        
+        if (pause)
+        {
+            
+        }
+        else
+        {
+           
+        }
+    }
+
 }
