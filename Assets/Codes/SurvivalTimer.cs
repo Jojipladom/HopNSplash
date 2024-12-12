@@ -29,4 +29,8 @@ public class SurvivalTimer : MonoBehaviour
         survivalTimeText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
      }
     
+    public void UpdateScore(int time)
+    {
+        survivalTimeText.text = time.ToString();
+    }
 }

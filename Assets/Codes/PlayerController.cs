@@ -27,9 +27,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 1.1f, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
         float move = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(move * speed, rb.velocity.y);
+        
+        print(isGrounded);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -41,7 +43,7 @@ public class PlayerController : MonoBehaviour
             Shoot();
         }
     }
-
+    
     void Shoot()
     {
         GameObject bubble = Instantiate(bubblePrefab, firePoint.position, firePoint.rotation);

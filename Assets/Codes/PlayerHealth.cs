@@ -88,7 +88,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Trigger detected with: " + collision.gameObject.name);
 
-        if (collision.gameObject.CompareTag("Enemy")) // || collision.gameObject.CompareTag("Killbox"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Killbox"))
         {
             Debug.Log("Taking ouchie...");
             TakeDamage(1);
@@ -97,7 +97,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")) // || collision.gameObject.CompareTag("Killbox"))
+        if (collision.gameObject.CompareTag("Enemy")  || collision.gameObject.CompareTag("Killbox"))
         {
             canMove = true; 
         }

@@ -6,7 +6,7 @@ public class GameOverScreen : MonoBehaviour
 {
     public GameObject gameOverScreenUI;
     public Button retryButton; 
-    public Button toMenuButton; 
+    public Button toMenuButton;
 
     private PlayerHealth playerHealth; 
 
@@ -52,4 +52,5 @@ public class GameOverScreen : MonoBehaviour
         Time.timeScale = 0; 
         Debug.Log("Game Ovaaa!");
     }
+    
 }

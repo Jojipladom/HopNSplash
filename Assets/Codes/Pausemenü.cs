@@ -40,6 +40,17 @@ public class PauseMenu : MonoBehaviour
         }
   }
 
+    private void ShowCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+    private void HideCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    
     public void OnPaused(InputAction.CallbackContext context)
     {
         TogglePause();
@@ -53,6 +64,7 @@ public class PauseMenu : MonoBehaviour
 
         if (!paused)
         {
+            ShowCursor();
             
             Time.timeScale = 0;
 
@@ -70,6 +82,7 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
+            HideCursor();
             
             Time.timeScale = 1;
 
@@ -99,9 +112,9 @@ public class PauseMenu : MonoBehaviour
     public void ToggleOptions()
     {
         bool options = OptionsScreen.activeSelf;
-        pauseMenuObject.SetActive(!options);
+        pauseMenuObject.SetActive(false);
 
         
-        OptionsScreen.SetActive(!options);
+        OptionsScreen.SetActive(true);
     }
 }
