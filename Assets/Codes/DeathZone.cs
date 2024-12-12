@@ -21,7 +21,7 @@ public class DeathZone : MonoBehaviour
   
   if (other.gameObject.CompareTag("Player"))
   {
-   Player.transform.position = respawnPoint.position;
+   other.gameObject.transform.position = respawnPoint.position;
    other.gameObject.SetActive(true);
   }
  }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -42,6 +43,16 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
+        
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.tag == "Box")
+            {
+                FindObjectOfType<LevelSpawner>().SpawnTile();
+                Debug.Log("SpawnNext");
+            }
+        }
+        
     }
     
     void Shoot()

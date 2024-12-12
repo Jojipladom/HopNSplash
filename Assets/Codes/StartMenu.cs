@@ -5,10 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
-   
+    void Start()
+    {
+        ShowCursor();
+    }
+    
     public void StartGame()
     {
         SceneManager.LoadScene("Level");
+        HideCursor();
     }
     
     

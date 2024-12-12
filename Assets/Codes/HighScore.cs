@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HighScore : MonoBehaviour
 {
     public Text scoreText;
+    public Text currentScore;
     private int score = 0;
     private float elapsedTime = 0f;
     
@@ -21,6 +22,7 @@ public class HighScore : MonoBehaviour
        
         scoreText.text = "Score: " + score;
        
+        UpdateScore(1);
     }
     
     public void IncreaseScore(int amount)
@@ -43,7 +45,7 @@ public class HighScore : MonoBehaviour
     
     public void UpdateScore(int score)
     {
-        scoreText.text = score.ToString();
+        scoreText.text = currentScore.text;
     }
     
 }

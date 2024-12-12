@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Enemy
   - Killbox
+  - Box
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Enemy
   - Bubble
   - Player
-  - 
+  - Killbox
   - 
   - 
   - 
@@ -83,4 +84,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1441357967
+    locked: 0
+  - name: Killbox
+    uniqueID: 1281688559
     locked: 0

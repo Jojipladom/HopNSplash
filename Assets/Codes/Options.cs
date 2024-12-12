@@ -38,6 +38,8 @@ public class Options : MonoBehaviour
         masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
         sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
         musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
+        
+        ShowCursor();
     }
     
     public void SaveSettings()
@@ -59,4 +61,11 @@ public class Options : MonoBehaviour
        { 
         SceneManager.LoadScene("StartMenu");
         }
+    
+    private void ShowCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
 }
+
