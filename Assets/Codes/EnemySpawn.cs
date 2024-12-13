@@ -4,29 +4,34 @@ public class EnemySpawn : MonoBehaviour
 {
     //Gegner PREFABS(!!)
     public GameObject enemyPrefab;
-    
-    //Wo die spawnen werden
-    public Transform spawnPoint;
-    
-    //Respawn Zeit
-    public float spawnInterval = 2f;
-    
-    
+
+    public float minSpawnInterval = 1f;
+    public float maxSpawnInterval = 5f;
+
+    private float nextSpawnTime;
+
+    void ScheduleNextSpawn()
+    {
+        float interval = Random.Range(minSpawnInterval, maxSpawnInterval);
+        nextSpawnTime = Time.time + interval;
+    }
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 1f, spawnInterval);
+        ScheduleNextSpawn();
     }
 
+    void Update()
+    {
+        if (Time.time >= nextSpawnTime)
+        {
+            SpawnEnemy();
+            ScheduleNextSpawn();
+        }
+    }
     
     void SpawnEnemy()
     {
-        if (enemyPrefab == null || spawnPoint == null)
-        {
-            Debug.LogError("Missing prefab oder spawn point.");
-            return;
-        }
-        Vector3 randomOffset = new Vector3(Random.Range(-2f, 2f), 0, 0);
-        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
     }
 
 }

@@ -85,6 +85,9 @@ TagManager:
   - name: Player
     uniqueID: 1441357967
     locked: 0
+  - name: ShootMouth
+    uniqueID: 2611630319
+    locked: 0
   - name: Killbox
     uniqueID: 1281688559
     locked: 0

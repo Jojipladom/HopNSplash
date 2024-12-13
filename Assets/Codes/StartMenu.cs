@@ -12,8 +12,10 @@ public class StartMenu : MonoBehaviour
     
     public void StartGame()
     {
+        
         SceneManager.LoadScene("Level");
         HideCursor();
+        Time.timeScale = 1f;
     }
     
     

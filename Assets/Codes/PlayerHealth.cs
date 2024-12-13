@@ -45,6 +45,8 @@ public class PlayerHealth : MonoBehaviour
 
         StartCoroutine(ResetDamageFlag());
         StartCoroutine(Invulnerability());
+
+        animator.SetTrigger("Hit");
     }
 
     private IEnumerator ResetDamageFlag()
@@ -79,8 +81,9 @@ public class PlayerHealth : MonoBehaviour
     {
         isAlive = false;
         Debug.Log("Player has bleh.");
-        //animator.SetTrigger("Die");
+        
         gameOverScreen.ShowGameOverScreen();
+        animator.SetTrigger("Die");
     }
 
 
@@ -92,6 +95,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("Taking ouchie...");
             TakeDamage(1);
+            
         }
     }
 

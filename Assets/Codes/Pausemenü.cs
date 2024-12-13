@@ -38,7 +38,7 @@ public class PauseMenu : MonoBehaviour
         {
             Debug.LogError("menuInputActions noh");
         }
-  }
+    }
 
     private void ShowCursor()
     {
@@ -79,6 +79,8 @@ public class PauseMenu : MonoBehaviour
             {
                 highScore.PauseGame(true);
             }
+            
+            
         }
         else
         {
@@ -107,10 +109,12 @@ public class PauseMenu : MonoBehaviour
     {
         TogglePause();
         SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
 
     public void ToggleOptions()
     {
+        ShowCursor();
         bool options = OptionsScreen.activeSelf;
         pauseMenuObject.SetActive(false);
 

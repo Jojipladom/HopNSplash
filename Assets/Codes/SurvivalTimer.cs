@@ -18,7 +18,7 @@ public class SurvivalTimer : MonoBehaviour
             
             int milliseconds = (int)(fractionOfSecond * 1000) % 1000;
             UpdateTimerText(milliseconds);
-          }
+        }
     }
     
     
